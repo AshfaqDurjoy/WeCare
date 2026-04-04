@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZYcfe7tTRpw=",
+  "success": false,
+  "projectFilePath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.AspNetCore.OpenApi. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "projectPath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "filePath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "libraryId": "Microsoft.AspNetCore.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.EntityFrameworkCore. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "projectPath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "filePath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package MySql.Data. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "projectPath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "filePath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "libraryId": "MySql.Data",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package BCrypt.Net-Next. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "projectPath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "filePath": "G:\\Github Everything\\3.2 Academics\\WeCare\\WeCare\\WeCare.csproj",
+      "libraryId": "BCrypt.Net-Next",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@WeCare_HostAddress = http://localhost:5246
+
+GET {{WeCare_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
