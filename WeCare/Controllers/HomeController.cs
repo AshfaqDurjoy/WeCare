@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WeCare.Data;
@@ -154,4 +154,4 @@ public class HomeController : Controller
     {
         return View();
     }
-}*/
+}
