@@ -1,0 +1,82 @@
+@model WeCare.ViewModels.EventCreateMV
+@{
+    ViewData["Title"] = "Host an Event";
+}
+
+<section class="auth-section">
+    <div class="auth-overlay"></div>
+    <div class="container d-flex align-items-center min-vh-100">
+        <div class="row w-100 justify-content-center">
+            <div class="col-lg-8">
+                <div class="glass-card registration-shell">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <p class="text-uppercase text-warning mb-1">Event Hosting</p>
+                            <h3 class="registration-title">Create a Campaign</h3>
+                        </div>
+                        <a class="btn btn-outline-light btn-sm" asp-controller="Home" asp-action="AllCampaigns">Back</a>
+                    </div>
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" class="step-form" id="eventCreateForm">
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Title" class="form-control realtime-validate" placeholder="Event Title" />
+                                    <label asp-for="Title">Event Title</label>
+                                    <span class="invalid-feedback" asp-validation-for="Title"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for="Description" class="form-control realtime-validate" placeholder="Description" style="height: 140px"></textarea>
+                                    <label asp-for="Description">Description</label>
+                                    <span class="invalid-feedback" asp-validation-for="Description"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="EventDate" type="date" class="form-control realtime-validate" />
+                                    <label asp-for="EventDate">Date</label>
+                                    <span class="invalid-feedback" asp-validation-for="EventDate"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="EventTime" type="time" class="form-control realtime-validate" />
+                                    <label asp-for="EventTime">Time</label>
+                                    <span class="invalid-feedback" asp-validation-for="EventTime"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Location" class="form-control realtime-validate" placeholder="Location" />
+                                    <label asp-for="Location">Location</label>
+                                    <span class="invalid-feedback" asp-validation-for="Location"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="MapLink" class="form-control" placeholder="Map Link" />
+                                    <label asp-for="MapLink">Map Link (Google Maps)</label>
+                                    <span class="invalid-feedback" asp-validation-for="MapLink"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Event Image</label>
+                                <input asp-for="ImageFile" type="file" class="form-control" id="eventImageInput" accept="image/*" />
+                                <img id="eventImagePreview" class="event-preview mt-3 d-none" alt="Event preview" />
+                            </div>
+                        </div>
+                        <div class="text-danger mt-3">
+                            @Html.ValidationSummary(false)
+                        </div>
+                        <button type="submit" class="btn btn-glow w-100 mt-4">
+                            <span id="eventSubmitText">Post Event</span>
+                            <span id="eventSubmitSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

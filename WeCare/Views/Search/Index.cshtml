@@ -1,0 +1,54 @@
+@model DonorSearchViewModel
+@{
+    ViewData["Title"] = "Find Blood";
+}
+<section class="section-dark">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="glass-card">
+                    <h5 class="mb-3">Search Donors</h5>
+                    <form method="get" asp-action="Index">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="bloodGroup" name="bloodGroup">
+                                <option value="">All Blood Groups</option>
+                                @foreach (var group in Model.BloodGroups)
+                                {
+                                    <option value="@group" selected="@(Model.SelectedBloodGroup == group)">@group</option>
+                                }
+                            </select>
+                            <label for="bloodGroup">Blood Group</label>
+                        </div>
+                        <button type="submit" class="btn btn-glow w-100">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="glass-card">
+                    <h5 class="mb-3">Results</h5>
+                    @if (Model.Results.Any())
+                    {
+                        <div class="row g-3">
+                            @foreach (var donor in Model.Results)
+                            {
+                                <div class="col-md-6">
+                                    <div class="campaign-card">
+                                        <h6 class="fw-semibold">@donor.FullName</h6>
+                                        <p class="mb-1">Gender: @donor.Gender</p>
+                                        <p class="mb-1">Blood Type: <span class="fw-semibold">@donor.BloodGroup</span></p>
+                                        <p class="mb-1">Last Donation: @(donor.LastDonationDate?.ToString("MMMM dd, yyyy") ?? "N/A")</p>
+                                        <p class="mb-0">Contact: @(string.IsNullOrWhiteSpace(donor.ContactInfo) ? donor.ContactNo : donor.ContactInfo)</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0">No donors found for the selected blood group.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

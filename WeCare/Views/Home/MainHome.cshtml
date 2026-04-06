@@ -1,0 +1,79 @@
+@model MainHomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content text-center text-lg-start">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <p class="hero-tag">Every drop matters</p>
+                <h1 class="display-4 fw-bold">Donate Blood. Save Lives.</h1>
+                <p class="lead">Connecting donors, seekers, hospitals, and blood banks in one platform.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    @if (Context.Session.GetInt32("UserID") == null)
+                    {
+                        <a class="btn btn-glow" asp-controller="Registration" asp-action="Register">Become a Donor</a>
+                    }
+                    <a class="btn btn-outline-light" asp-controller="Search" asp-action="Index">Find Blood</a>
+                    @if (Context.Session.GetInt32("UserID") == null)
+                    {
+                        <a class="btn btn-outline-light" asp-controller="Home" asp-action="Login">Login</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="glass-card hero-card">
+                    <h5 class="mb-3">Upcoming Campaigns</h5>
+                    <ul class="list-unstyled">
+                        @if (Model.UpcomingCampaigns.Any())
+                        {
+                            foreach (var campaign in Model.UpcomingCampaigns.Take(3))
+                            {
+                                <li class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-semibold">@campaign.CampaignName</span>
+                                        <span class="text-muted">@campaign.CampaignDate.ToString("MMM dd")</span>
+                                    </div>
+                                    <small class="text-muted">@campaign.Location</small>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="text-muted">No campaigns available yet.</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </div>
+</section>
+
+<section class="section-dark">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h5>Human Stories</h5>
+                    <p>Real-time donor matching with emotionally engaging profiles that inspire trust.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h5>Urgency & Care</h5>
+                    <p>Instant alerts and campaign visibility for critical blood requests.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h5>Unified Network</h5>
+                    <p>Hospitals and blood banks gain a unified view of inventory and requests.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

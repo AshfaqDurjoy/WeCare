@@ -1,0 +1,32 @@
+@model List<WeCare.Models.Campaign>
+@{
+    ViewData["Title"] = "Campaigns";
+}
+<section class="section-dark pt-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Active Campaigns</h2>
+            <a class="btn btn-outline-light" asp-controller="Registration" asp-action="Register">Host a Campaign</a>
+        </div>
+        <div class="row g-4">
+            @if (Model.Any())
+            {
+                foreach (var campaign in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="campaign-card">
+                            <h5>@campaign.CampaignName</h5>
+                            <p class="text-muted">@campaign.CampaignDate.ToString("MMMM dd, yyyy")</p>
+                            <p>@campaign.Location</p>
+                            <span class="badge bg-light text-dark">@campaign.Organizer</span>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">No upcoming campaigns found.</p>
+            }
+        </div>
+    </div>
+</section>

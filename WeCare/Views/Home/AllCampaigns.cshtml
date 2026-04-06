@@ -1,0 +1,72 @@
+@model List<WeCare.ViewModels.EventDisplayMV>
+@{
+    ViewData["Title"] = "All Campaigns";
+    var isLoggedIn = Context.Session.GetInt32("UserID") != null;
+}
+
+<section class="section-dark pt-5">
+    <div class="container mt-4 pt-3">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mt-4 mb-2">Upcoming Campaigns</h2>
+                <p class="text-white-50">Discover upcoming donation events hosted by our community.</p>
+            </div>
+            @if (isLoggedIn)
+            {
+                <a class="btn btn-glow" asp-controller="Event" asp-action="Create">Host an Event</a>
+            }
+            else
+            {
+                <button type="button" class="btn btn-glow login-required" data-login-message="Login required to host an event" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">Host an Event</button>
+            }
+        </div>
+        @Html.AntiForgeryToken()
+        <div class="row g-4">
+            @if (Model.Any())
+            {
+                foreach (var ev in Model)
+                {
+                    var shortDesc = ev.Description.Length > 140 ? ev.Description[..140] + "..." : ev.Description;
+                    <div class="col-md-6 col-lg-4">
+                        <div class="event-card h-100">
+                            <img src="@(string.IsNullOrWhiteSpace(ev.ImagePath) ? "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=80" : ev.ImagePath)" alt="@ev.Title" />
+                            <div class="p-3">
+                                <h5>@ev.Title</h5>
+                                <p class="event-meta mb-2">
+                                    <i class="bi bi-calendar-event"></i>
+                                    @ev.EventDate.ToString("MMMM dd, yyyy") · @ev.EventTime.ToString(@"hh\:mm")
+                                </p>
+                                <p class="event-meta mb-2"><i class="bi bi-geo-alt"></i> @ev.Location</p>
+                                <p>@shortDesc</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    @if (!string.IsNullOrWhiteSpace(ev.MapLink))
+                                    {
+                                        <a class="btn btn-outline-light btn-sm" href="@ev.MapLink" target="_blank">View Map</a>
+                                    }
+                                    else
+                                    {
+                                        <span></span>
+                                    }
+                                    @if (isLoggedIn)
+                                    {
+                                        <button type="button" class="btn btn-glow btn-sm respond-event" data-event-id="@ev.EventId" @(ev.HasResponded ? "disabled" : "")>
+                                            @(ev.HasResponded ? "Responded" : "Respond")
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-glow btn-sm login-required" data-login-message="Login required to respond to this event" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">Respond</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-white-50">No upcoming campaigns found.</p>
+            }
+        </div>
+    </div>
+</section>
