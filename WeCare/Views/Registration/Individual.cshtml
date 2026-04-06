@@ -1,0 +1,122 @@
+@model WeCare.ViewModels.IndividualRegistrationMV
+@{
+    ViewData["Title"] = "Individual Registration";
+}
+
+<section class="auth-section">
+    <div class="auth-overlay"></div>
+    <div class="container d-flex align-items-center min-vh-100">
+        <div class="row w-100 justify-content-center">
+            <div class="col-lg-8">
+                <div class="glass-card registration-shell">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <p class="text-uppercase text-warning mb-1">Step 2</p>
+                            <h3 class="registration-title">Register as Individual</h3>
+                        </div>
+                        <a class="btn btn-outline-light btn-sm" asp-action="SelectType">Back</a>
+                    </div>
+                    <form asp-action="Individual" method="post" class="step-form">
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <select asp-for="RegistrationType" class="form-select realtime-validate">
+                                        <option value="Donor">Blood Donor</option>
+                                        <option value="Seeker">Blood Seeker</option>
+                                    </select>
+                                    <label asp-for="RegistrationType">Registering As</label>
+                                    <span class="invalid-feedback" asp-validation-for="RegistrationType"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="FullName" class="form-control realtime-validate" placeholder="Full Name" />
+                                    <label asp-for="FullName">Full Name</label>
+                                    <span class="invalid-feedback" asp-validation-for="FullName"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="ContactNo" class="form-control realtime-validate" placeholder="Phone" />
+                                    <label asp-for="ContactNo">Contact Number</label>
+                                    <span class="invalid-feedback" asp-validation-for="ContactNo"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control realtime-validate" placeholder="Email" />
+                                    <label asp-for="Email">Email</label>
+                                    <span class="invalid-feedback" asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="JobStatus" class="form-select realtime-validate">
+                                        <option value="Student">Student</option>
+                                        <option value="Employed">Employed</option>
+                                        <option value="Unemployed">Unemployed</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <label asp-for="JobStatus">Job Status</label>
+                                    <span class="invalid-feedback" asp-validation-for="JobStatus"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Address" class="form-control realtime-validate" placeholder="Address" />
+                                    <label asp-for="Address">Address</label>
+                                    <span class="invalid-feedback" asp-validation-for="Address"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="BloodGroup" class="form-select realtime-validate">
+                                        <option value="">Select Blood Group</option>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                    </select>
+                                    <label asp-for="BloodGroup">Blood Group</label>
+                                    <span class="invalid-feedback" asp-validation-for="BloodGroup"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="LastDonationDate" type="date" class="form-control" />
+                                    <label asp-for="LastDonationDate">Last Blood Donation Date</label>
+                                    <span class="invalid-feedback" asp-validation-for="LastDonationDate"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <div class="form-floating">
+                                    <input asp-for="Password" type="password" class="form-control realtime-validate" placeholder="Password" />
+                                    <label asp-for="Password">Password</label>
+                                    <span class="invalid-feedback" asp-validation-for="Password"></span>
+                                </div>
+                                <i class="bi bi-eye password-toggle"></i>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <div class="form-floating">
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control realtime-validate" placeholder="Confirm" />
+                                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                                    <span class="invalid-feedback" asp-validation-for="ConfirmPassword"></span>
+                                </div>
+                                <i class="bi bi-eye password-toggle"></i>
+                            </div>
+                        </div>
+                        <div class="text-danger mt-3">
+                            @Html.ValidationSummary(false)
+                        </div>
+                        <button type="submit" class="btn btn-glow w-100 mt-4">Register as Individual</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
