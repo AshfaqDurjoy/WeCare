@@ -1,5 +1,7 @@
 # WeCare# WeCare
 
+Live site: https://wecare-hsh6gededfcreafh.eastasia-01.azurewebsites.net
+
 WeCare is a modern ASP.NET Core MVC (.NET 10) foundation for an online blood donation and blood bank management system with a cinematic, healthcare-inspired UI.
 
 ## Prerequisites
@@ -22,6 +24,12 @@ WeCare is a modern ASP.NET Core MVC (.NET 10) foundation for an online blood don
      ```powershell
      dotnet run
      ```
+
+## Tech Stack
+
+- ASP.NET Core MVC (.NET 10)
+- MySQL
+- Azure App Service (deployment)
 
 ## Key Features
 
