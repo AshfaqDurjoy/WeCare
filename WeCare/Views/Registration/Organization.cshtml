@@ -1,0 +1,87 @@
+@model WeCare.ViewModels.OrganizationRegistrationMV
+@{
+    ViewData["Title"] = "Organization Registration";
+}
+
+<section class="auth-section">
+    <div class="auth-overlay"></div>
+    <div class="container d-flex align-items-center min-vh-100">
+        <div class="row w-100 justify-content-center">
+            <div class="col-lg-8">
+                <div class="glass-card registration-shell">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <p class="text-uppercase text-warning mb-1">Step 2</p>
+                            <h3 class="registration-title">Register Organization</h3>
+                        </div>
+                        <a class="btn btn-outline-light btn-sm" asp-action="SelectType">Back</a>
+                    </div>
+                    <form asp-action="Organization" method="post" class="step-form">
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="OrganizationType" class="form-select org-type-select realtime-validate">
+                                        <option value="Hospital">Hospital</option>
+                                        <option value="NGO">NGO</option>
+                                        <option value="Foundation">Public/Private Foundation</option>
+                                    </select>
+                                    <label asp-for="OrganizationType">Organization Type</label>
+                                    <span class="invalid-feedback" asp-validation-for="OrganizationType"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="OrganizationName" class="form-control realtime-validate" placeholder="Organization Name" />
+                                    <label asp-for="OrganizationName" class="org-name-label">Hospital Name</label>
+                                    <span class="invalid-feedback" asp-validation-for="OrganizationName"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Address" class="form-control realtime-validate" placeholder="Address" />
+                                    <label asp-for="Address">Address</label>
+                                    <span class="invalid-feedback" asp-validation-for="Address"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Phone" class="form-control realtime-validate" placeholder="Phone" />
+                                    <label asp-for="Phone">Contact Number</label>
+                                    <span class="invalid-feedback" asp-validation-for="Phone"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control realtime-validate" placeholder="Email" />
+                                    <label asp-for="Email">Email</label>
+                                    <span class="invalid-feedback" asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <div class="form-floating">
+                                    <input asp-for="Password" type="password" class="form-control realtime-validate" placeholder="Password" />
+                                    <label asp-for="Password">Password</label>
+                                    <span class="invalid-feedback" asp-validation-for="Password"></span>
+                                </div>
+                                <i class="bi bi-eye password-toggle"></i>
+                            </div>
+                            <div class="col-md-6 position-relative">
+                                <div class="form-floating">
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control realtime-validate" placeholder="Confirm" />
+                                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                                    <span class="invalid-feedback" asp-validation-for="ConfirmPassword"></span>
+                                </div>
+                                <i class="bi bi-eye password-toggle"></i>
+                            </div>
+                        </div>
+                        <div class="text-danger mt-3">
+                            @Html.ValidationSummary(false)
+                        </div>
+                        <button type="submit" class="btn btn-glow w-100 mt-4">Register Organization</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
