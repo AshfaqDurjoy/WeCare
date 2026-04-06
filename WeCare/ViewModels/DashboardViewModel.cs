@@ -1,4 +1,4 @@
-﻿using WeCare.Models;
+using WeCare.Models;
 
 namespace WeCare.ViewModels;
 

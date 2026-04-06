@@ -5,12 +5,7 @@
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net10.0": [
-      "BCrypt.Net-Next >= 4.0.3",
-      "Microsoft.AspNetCore.OpenApi >= 10.0.5",
-      "Microsoft.EntityFrameworkCore >= 10.0.5",
-      "MySql.Data >= 9.0.0"
-    ]
+    "net10.0": []
   },
   "packageFolders": {
     "C:\\Users\\User\\.nuget\\packages\\": {},
@@ -29,6 +24,7 @@
         "F:\\New folder (2)\\SDKS\\NuGetPackages"
       ],
       "configFilePaths": [
+        "G:\\Github Everything\\3.2 Academics\\WeCare\\NuGet.Config",
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -37,7 +33,7 @@
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
@@ -60,24 +56,6 @@
     "frameworks": {
       "net10.0": {
         "targetAlias": "net10.0",
-        "dependencies": {
-          "BCrypt.Net-Next": {
-            "target": "Package",
-            "version": "[4.0.3, )"
-          },
-          "Microsoft.AspNetCore.OpenApi": {
-            "target": "Package",
-            "version": "[10.0.5, )"
-          },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[10.0.5, )"
-          },
-          "MySql.Data": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",
@@ -514,43 +492,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.OpenApi. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.AspNetCore.OpenApi",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.EntityFrameworkCore. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package MySql.Data. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "MySql.Data",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package BCrypt.Net-Next. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "BCrypt.Net-Next",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }
