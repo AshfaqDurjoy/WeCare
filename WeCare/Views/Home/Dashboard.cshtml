@@ -1,0 +1,152 @@
+﻿@using WeCare.ViewModels
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<section class="section-dark pt-5">
+    <div class="container mt-4 pt-3">
+        <div class="glass-card mb-4">
+            <h3>Welcome, @Model.UserName</h3>
+            <p class="text-muted">@Model.UserTypeName Dashboard</p>
+        </div>
+
+        @if (Model.UserTypeName == "Donor")
+        {
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card donation-status">
+                        <h5>Your Donation Status</h5>
+                        <p id="donationTimer" class="donation-timer">@(Model.LastDonationDate == null ? "No donations yet" : "Calculating...")</p>
+                        <p class="text-white-50">Last Donation: @(Model.LastDonationDate?.ToString("MMMM dd, yyyy") ?? "N/A")</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <h5>Eligibility</h5>
+                        @{
+                            var daysSinceDonation = Model.LastDonationDate.HasValue
+                                ? (DateTime.Today - Model.LastDonationDate.Value.Date).Days
+                                : (int?)null;
+                            var eligible = daysSinceDonation.HasValue && daysSinceDonation.Value >= 64;
+                        }
+                        <p class="@(eligible ? "text-success" : "text-danger")">
+                            @(eligible ? "Eligible to donate" : "Not eligible yet")
+                        </p>
+                        @if (daysSinceDonation.HasValue)
+                        {
+                            <p class="text-white-50">Days since last donation: @daysSinceDonation</p>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <h5>Nearby Campaigns</h5>
+                        <p>@Model.UpcomingCampaigns.Count campaign(s) this month.</p>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.UserTypeName == "Seeker")
+        {
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <h5>Search Blood</h5>
+                        <p>Filter by blood group and location in real time.</p>
+                        <button class="btn btn-glow">Request Blood</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <h5>Active Requests</h5>
+                        <p>No pending requests.</p>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.UserTypeName == "Hospital" || Model.UserTypeName == "Organization")
+        {
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <h5>Inventory</h5>
+                        <p>Monitor stock levels and urgent needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <h5>Requests</h5>
+                        <p>Review incoming blood requests.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <h5>Campaigns</h5>
+                        <p>Plan and promote donation events.</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.UserTypeName == "Donor")
+        {
+            <div class="mt-5">
+                <h4 class="mb-3">Your Participated Campaigns</h4>
+                <div class="row g-4">
+                    @if (Model.ParticipatedEvents.Any())
+                    {
+                        foreach (var ev in Model.ParticipatedEvents)
+                        {
+                            var shortDesc = ev.Description.Length > 120 ? ev.Description[..120] + "..." : ev.Description;
+                            <div class="col-md-6 col-lg-4">
+                                <div class="event-card h-100">
+                                    <img src="@(string.IsNullOrWhiteSpace(ev.ImagePath) ? "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=80" : ev.ImagePath)" alt="@ev.Title" />
+                                    <div class="p-3">
+                                        <h5>@ev.Title</h5>
+                                        <p class="event-meta mb-2">
+                                            <i class="bi bi-calendar-event"></i>
+                                            @ev.EventDate.ToString("MMMM dd, yyyy") · @ev.EventTime.ToString(@"hh\\:mm")
+                                        </p>
+                                        <p class="event-meta mb-2"><i class="bi bi-geo-alt"></i> @ev.Location</p>
+                                        <p>@shortDesc</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-white-50">You have not responded to any campaigns yet.</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            var lastDonation = '@(Model.LastDonationDate?.ToString("O") ?? string.Empty)';
+            if (!lastDonation) {
+                return;
+            }
+
+            var lastDate = new Date(lastDonation);
+            var timer = $('#donationTimer');
+
+            setInterval(function () {
+                var now = new Date();
+                var diff = now - lastDate;
+                if (diff < 0) {
+                    diff = 0;
+                }
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                var minutes = Math.floor((diff / (1000 * 60)) % 60);
+                timer.text(days + ' days ' + hours + ' hrs ' + minutes + ' mins ago');
+            }, 1000);
+        });
+    </script>
+}
