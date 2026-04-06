@@ -26,6 +26,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXEluZGl2aWR1YWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/3.2/SD/WeCare/WeCare/Views/Registration/Organization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXE9yZ2FuaXphdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/3.2/SD/WeCare/WeCare/Views/Registration/SelectType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXFNlbGVjdFR5cGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
